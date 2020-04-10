@@ -1,4 +1,5 @@
 ﻿using API.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace API.Services{
         private readonly NoticiasDBContext _noticiaDbContext;
         public NoticiaService(NoticiasDBContext noticiaDbContext){
             _noticiaDbContext = noticiaDbContext;
+        }
+
+        public List<Noticia> Obtener(){
+            var resultado =_noticiaDbContext.Noticia.Include(x => x.Autor).ToList();
+            return resultado;
         }
 
         public Boolean agregarNoticia(Noticia _noticia){

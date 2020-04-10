@@ -20,7 +20,7 @@ namespace API.Models{
             public Mapeo(EntityTypeBuilder<Noticia> mapeoNoticia){
                 mapeoNoticia.HasKey(x => x.NoticiaID);
                 mapeoNoticia.Property(x => x.Titulo).HasColumnName("Titulo");
-                mapeoNoticia.Property(x => x.Descripcion).HasColumnName("Descripcion");
+                mapeoNoticia.Property(x => x.Descripcion).HasColumnName("Descripción");
                 mapeoNoticia.ToTable("Noticia");
                 mapeoNoticia.HasOne(x => x.Autor);
             }
