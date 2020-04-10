@@ -27,5 +27,23 @@ namespace API.Services{
                   return false;
             }
         }
+
+        public Boolean editarNoticia(Noticia _noticia){
+            try{
+                var noticiaBaseDeDatos = _noticiaDbContext.Noticia.Where(busqueda => busqueda.NoticiaID == _noticia.NoticiaID).FirstOrDefault();
+                noticiaBaseDeDatos.Titulo = _noticia.Titulo;
+                noticiaBaseDeDatos.Descripcion = _noticia.Descripcion;
+                noticiaBaseDeDatos.Contenido = _noticia.Contenido;
+                noticiaBaseDeDatos.Fecha = _noticia.Fecha;
+                noticiaBaseDeDatos.Autor = _noticia.Autor;
+
+                _noticiaDbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception){
+
+                throw;
+            }
+        }
     }
 }

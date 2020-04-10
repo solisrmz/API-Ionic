@@ -36,5 +36,20 @@ namespace API.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPut]
+        [Route("editar")]
+        public IActionResult editar([FromBody] Noticia _noticia)
+        {
+            var resultado = _noticiaService.editarNoticia(_noticia);
+            if (resultado)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }
