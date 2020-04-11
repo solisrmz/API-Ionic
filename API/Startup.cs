@@ -30,6 +30,9 @@ namespace API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<NoticiasDBContext>(opciones => opciones.UseSqlServer(Configuration.GetConnectionString("conexionANoticias")));
             services.AddTransient<NoticiaService, NoticiaService>();
+            services.AddCors(opciones =>{
+                opciones.AddPolicy("PermitirTodo", acceso => acceso.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +46,7 @@ namespace API
             {
                 app.UseHsts();
             }
-
+            app.UseCors("PermitirTodo");
             app.UseHttpsRedirection();
             app.UseMvc();
         }
